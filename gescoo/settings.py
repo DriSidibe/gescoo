@@ -39,6 +39,10 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'gescoo_app',
+    'parametrage',
+    'comptabilite',
+    'pedagogie',
+    'administration',
 ]
 
 MIDDLEWARE = [
