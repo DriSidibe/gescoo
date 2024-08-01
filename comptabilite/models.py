@@ -1,34 +1,7 @@
 from django.db import models
 
 from gescoo_app.models import Evenement
-from pedagogie.models import Enseignant, Inscription, Niveau, Serie, PAT
-
-# frais inscription model
-class FraisInscription(models.Model):
-    montant = models.IntegerField()
-    niveau = models.ManyToManyField(Niveau)
-    serie = models.ManyToManyField(Serie)
-    
-    def __str__(self):
-        return f"frais {self.pk}"
-
-# frais scolarite model
-class FraisScolarite(models.Model):
-    niveau = models.ManyToManyField(Niveau)
-    serie = models.ManyToManyField(Serie)
-    montaint = models.IntegerField()
-    
-    def __str__(self):
-        return f"frais {self.pk}"
-
-# frais annexe model
-class FraisAnnexe(models.Model):
-    niveau = models.ManyToManyField(Niveau)
-    serie = models.ManyToManyField(Serie)
-    montaint = models.IntegerField()
-    
-    def __str__(self):
-        return f"frais {self.pk}"
+from pedagogie.models import Enseignant, Inscription, Niveau, Serie, Pat
     
 # type paiement model
 class TypePaiement(models.Model):
@@ -51,7 +24,7 @@ class Contrat(Evenement):
     CHOICES = [('CDD', 'CDD'), ('CDI', 'CDI'), ('Vacataire', 'Vacataire'), ('Stagiaire', 'Stagiaire'), ('Contractuel', 'Contractuel'), ('Autre', 'Autre')]
     
     enseignant = models.ForeignKey(Enseignant, on_delete=models.CASCADE, null=True, blank=True, default=None)
-    pat = models.ForeignKey(PAT, on_delete=models.CASCADE, null=True, blank=True, default=None)
+    pat = models.ForeignKey(Pat, on_delete=models.CASCADE, null=True, blank=True, default=None)
     type_contrat = models.CharField(max_length=50, choices=CHOICES)
     salaire = models.IntegerField()
     
@@ -69,7 +42,7 @@ class Depense(Evenement):
 # paiement model
 class Paiement(Evenement):
     enseignant = models.ForeignKey(Enseignant, on_delete=models.CASCADE)
-    pat = models.ForeignKey(PAT, on_delete=models.CASCADE)
+    pat = models.ForeignKey(Pat, on_delete=models.CASCADE)
     
     def __str__(self):
         return f"frais {self.pk}"
